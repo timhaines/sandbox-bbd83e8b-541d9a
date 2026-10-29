@@ -1,0 +1,11 @@
+name: check-env
+on: push
+permissions: {}
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - env:
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: printf '%s' "$SIGNING_KEY" | sha256sum
